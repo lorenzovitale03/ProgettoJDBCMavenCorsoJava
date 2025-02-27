@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 
 import java.sql.SQLException;
 import java.util.Locale;
+import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -17,19 +18,41 @@ public class Main {
             db = new DBConnection();
 
             DBConnection connessione = new DBConnection();
-            //Cliente clienteUno = new Cliente("giorgiacchi@libero.it","320001000","Giorgio Giacchi");
-            //Cliente clienteDue = new Cliente("marcochiatti1994@gmail.com","3210039891","Marco Chiattini");
-            //Cliente clienteTre = new Cliente("esempioUpdate@gmail.com","3301120053","Tom Newman");
-            //connessione.inserisciClienti(clienteUno);
-            //connessione.inserisciClienti(clienteDue);
+            Scanner scanner = new Scanner(System.in);
 
-            //Prodotti prodotto = new Prodotti("Scolapasta",2,"Scolapasta qualunque",3.2);
-            Prodotti prodottoDue = new Prodotti("Termometro da cucina",10,"Per misurare il cibo",2.1);
-            //connessione.inserireProdotti(prodotto);
-            //connessione.inserireProdotti(prodottoDue);
+            Cliente cliente = new Cliente("giorgix@gmail.com","300000200","Giorgio Giorgi");
+            Prodotti prodotto = new Prodotti("Spazzolino",10,"Spazzolino da denti",1.5);
 
-            //connessione.updateClienti(clienteTre);
-            connessione.updateProdotti(prodottoDue);
+            System.out.println("Benvenuto nel Database");
+
+            while (true){
+                System.out.println("Premi 1 per aggiungere un cliente al database");
+                System.out.println("Premi 2 per aggiornare clienti nel database");
+                System.out.println("Premi 3 per rimuovere clienti dal database");
+                System.out.println("Premi 4 per aggiungere prodotti al database");
+                System.out.println("Premi 5 per aggiornare prodotti al database");
+                System.out.println("Premi 6 per rimuovere prodotti dal database");
+                System.out.println("Premi 7 per uscire dal Database");
+                int input = scanner.nextInt();
+
+                if(input == 1){
+                    connessione.inserisciClienti(cliente);
+                }else  if(input == 2){
+                    connessione.updateClienti(cliente);
+                }else if(input == 3){
+                    connessione.removeClienti(cliente);
+                }else if(input == 4){
+                    connessione.inserireProdotti(prodotto);
+                }else if(input == 5){
+                    connessione.updateProdotti(prodotto);
+                }else if(input == 6){
+                    connessione.removeProdotti(prodotto);
+                }else{
+                    break;
+                }
+
+            }
+            System.out.println("Sei uscito dal Database");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
